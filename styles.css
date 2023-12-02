@@ -1,4 +1,8 @@
-
+body {
+    background-image: url("./static/images/clear.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .addition{
     width: 100%;
     z-index: 10;
@@ -10,10 +14,16 @@
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
-    
- 
+   
 }
-
+#myButton {
+    border-radius: 25px;
+    margin-top: 20px;
+    padding: 6px;
+    font-size: 12px;
+    color: black;
+   opacity: 0.5;
+}
 .home {
     text-align: center;
     position: relative;
@@ -23,7 +33,11 @@
     color: white;
     width: 100%;
     height: 30px;
-  
+    position: relative;
+    left: 0px;
+    top: 30vh;
+    text-align: center;
+
 
 }
 .temperature {
@@ -35,8 +49,33 @@
 
 }
 .back-textbox {
-    background-color: blueviolet;
+  
     position: relative;
+ 
+    border-radius: 25px;
+   position: relative;
+   
+
+}
+.addition p {
+    background-color: grey;
     width: 20%;
-    height: 17%;
+    position: relative;
+    left: 38%;
+    display: inline;
+    padding: 10px;
+    border-radius: 25px;
+    margin-right: 40px;
+
+
+}
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+}
+input:focus {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
 }

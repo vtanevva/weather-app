@@ -14,53 +14,65 @@
       <input type="text" id="city"></input>
       <button id="myButton">search</button>
       <div class="cloud"></div>
+      
     </section>
     <div id="weather-info"></div>
-
+    <div id="location-info"></div>
   
     <script>
-      function getWeather() {
-        const city = document.getElementById("city").value;
-        if (city === "") {
-          alert("Please enter a city name");
-          return;
-        }
+     document.addEventListener("DOMContentLoaded", function () {
+  // Wait for the DOM to be fully loaded
 
-        const apiKey = "414c58299092f18c1c087fc9504f46b0";
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  // Fetch user's IP address from ipinfo.io
+  fetch("https://ipinfo.io/json?token=02933c1b631b68")
+    .then((response) => response.json())
+    .then((ipInfo) => {
+      const city = ipInfo.city;
+      const region = ipInfo.region;
+      const country = ipInfo.country;
 
-        fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            const weatherInfo = document.getElementById("weather-info");
-            const additionDiv = document.createElement("div");
-            const back = document.getElementsByClassName('temperature');
-            additionDiv.className = "addition";
+      // Display the location data (you can customize this based on your needs)
+      const locationInfo = document.getElementById("location-info");
+      locationInfo.textContent = `Your location: ${city}, ${region}, ${country}`;
 
-            const additionCoContent = `
-                                <h2>${city}</h2>
-                                <div class="back-textbox">
-                                  <p class="temperature"> ${data.main.temp} °C</p>
-                                  <p class="weather"> ${data.weather[0].description}</p>
-                                </div>    
-                                <div class="background-text"></div>
+      // Fetch weather data using the city (or coordinates) obtained from IP
+      getWeatherByCity(city);
+    })
+    .catch((error) => {
+      console.error("Error getting IP information:", error);
+      // Handle the error as needed
+    });
+
+  // Function to get weather data by city
+  function getWeatherByCity(city) {
+    const apiKey = "414c58299092f18c1c087fc9504f46b0";
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        const weatherInfo = document.getElementById("weather-info");
+        const additionDiv = document.createElement("div"); 
+        additionDiv.className = 'addition';
+        additionDiv.innerHTML = `
+                        <h2>Weather in ${city}</h2>
+                        <p>Temperature: ${data.main.temp} °C</p>
+                        <p>Weather: ${data.weather[0].description}</p>
                         `;
-            weatherInfo.innerHTML = "";
-            additionDiv.innerHTML = additionCoContent;
-            weatherInfo.appendChild(additionDiv);
 
-            const additionCo = document.getElementById("addition-co");
+     
+        weatherInfo.appendChild(additionDiv);
 
-            background(additionDiv, data.weather[0].main);
-           /* backColor(back, data.weather[0].main)*/
-          })
-          .catch((error) => {
-            console.error(error);
-            alert(
-              "An error occurred while fetching weather data. Check the console for details."
-            );
-          });
-      }
+        background(additionDiv, data.weather[0].main);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(
+          "An error occurred while fetching weather data. Check the console for details."
+        );
+      });
+  }
+});
 
       function background(x, y) {
         switch (y) {

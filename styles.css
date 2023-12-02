@@ -101,14 +101,14 @@ input:focus {
     border-bottom: 1px solid black;
 }
 .background-text{
-    background-color: grey;
-    position: relative;
-    top: 100px;
-    width: 500px;
+    background-color: lightgrey;
+    position: absolute;
+    top: 60%;
+    width: 200px;
     height: 200px;
-    left: 220px;
+    left: 3%;
     z-index: -1;
     border-radius: 50px;
-    opacity: 0.6;
+    opacity: 0.15;
     box-shadow: 0px 3px 5px black;
 }

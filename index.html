@@ -4,17 +4,20 @@
     <meta charset="UTF-8" />
     <title>Weather App</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap">
+
   </head>
 
   <body>
     <section class="home">
       <label for="city">Where are you?</label>
-      <input type="text" id="city" />
+      <input type="text" id="city"></input>
       <button id="myButton">search</button>
+      <div class="cloud"></div>
     </section>
     <div id="weather-info"></div>
 
-    <script src="/app.js"></script>
+  
     <script>
       function getWeather() {
         const city = document.getElementById("city").value;
@@ -32,16 +35,15 @@
             const weatherInfo = document.getElementById("weather-info");
             const additionDiv = document.createElement("div");
             const back = document.getElementsByClassName('temperature');
-            const additionDivBox = document.createElement("div");
             additionDiv.className = "addition";
-            additionDivBox.className = "addition-co";
 
             const additionCoContent = `
-                              
-                                <h2>Weather in ${city}</h2><div class="back-textbox">
-                                <p class="temperature">Temperature: ${data.main.temp} °C</p>
-                                <p class="temperature">Weather: ${data.weather[0].description}</p>
-                              </div>    
+                                <h2>${city}</h2>
+                                <div class="back-textbox">
+                                  <p class="temperature"> ${data.main.temp} °C</p>
+                                  <p class="weather"> ${data.weather[0].description}</p>
+                                </div>    
+                                <div class="background-text"></div>
                         `;
             weatherInfo.innerHTML = "";
             additionDiv.innerHTML = additionCoContent;
@@ -59,6 +61,7 @@
             );
           });
       }
+
       function background(x, y) {
         switch (y) {
           case "Thunderstorm":
@@ -87,8 +90,12 @@
             x.style.backgroundImage = 'url("./static/images/fog.gif")';
 
             break;
+          case "Haze":
+            x.style.backgroundImage = 'url("./static/images/fog.gif")';
+
+            break;
           default:
-            x.style.backgroundImage = "none";
+            x.style.backgroundImage = 'url("./static/images/clear.gif")';
         }
       }
       var myButton = document.getElementById("myButton");

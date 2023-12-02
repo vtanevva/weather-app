@@ -2,6 +2,7 @@ body {
     background-image: url("./static/images/clear.gif");
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Cabin', sans-serif;
 }
 .addition{
     width: 100%;
@@ -23,30 +24,46 @@ body {
     font-size: 12px;
     color: black;
    opacity: 0.5;
+   position: absolute;
+   left: 61%;
+   padding-left: 10px;
+   padding-right: 10px;
+   top: 2%;
 }
 .home {
     text-align: center;
     position: relative;
     top: 25vh;
+    
+}
+.cloud {
+    background-image: url(static/images/cloud-removebg-preview.png);
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 300px;
+    background-size: cover;
+    position: relative;
+    left: 15%;
+    bottom: 28vh;
+    z-index: -1;
 }
 .addition p,.addition h2 {
-    color: white;
-    width: 100%;
+    color: black;
     height: 30px;
     position: relative;
-    left: 0px;
-    top: 30vh;
-    text-align: center;
-
+    left: 5%;
+    top: 60vh;
+    text-align: left;
+    
 
 }
 .temperature {
     position: relative;
+    padding: 0;
+    margin: 0;
 }
 .weather {
-    position: relative;
-    padding-bottom: 20px;
-
+  margin-top: 25px;
 }
 .back-textbox {
   
@@ -57,17 +74,21 @@ body {
    
 
 }
+.temperature {
+    font-size: 44px;
+}
 .addition p {
-    background-color: grey;
-    width: 20%;
     position: relative;
-    left: 38%;
-    display: inline;
-    padding: 10px;
-    border-radius: 25px;
-    margin-right: 40px;
+    transition: font-size  0.5s ease-out;
+   
 
-
+}
+.addition h2 {
+    font-size: 50px;
+    margin-bottom: 25px;
+}
+.addition p:hover {
+    font-size: 17.5px;
 }
 input {
     background-color: transparent;
@@ -78,4 +99,16 @@ input:focus {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid black;
+}
+.background-text{
+    background-color: grey;
+    position: relative;
+    top: 100px;
+    width: 500px;
+    height: 200px;
+    left: 220px;
+    z-index: -1;
+    border-radius: 50px;
+    opacity: 0.6;
+    box-shadow: 0px 3px 5px black;
 }

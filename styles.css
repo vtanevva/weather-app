@@ -49,20 +49,12 @@ body {
     color: black;
     height: 30px;
     position: relative;
-    left: 5%;
     top: 60vh;
     text-align: left;
     
 
 }
-.temperature {
-    position: relative;
-    padding: 0;
-    margin: 0;
-}
-.weather {
-  margin-top: 25px;
-}
+
 .back-textbox {
   
     position: relative;
@@ -84,9 +76,32 @@ body {
 .addition h2 {
     font-size: 50px;
     margin-bottom: 25px;
+    left: 5%;
+    border-bottom: 2px solid black;
+    padding-bottom: 25px;
+    width: 35%;
 }
-.addition p:hover {
-    font-size: 17.5px;
+.temperature {
+    position: relative;
+    padding: 0;
+    
+    margin: 0;margin-top: -20px;
+    font-family: 'Roboto';
+    left: 5%;
+    font-size: 60px;
+}
+.weather {
+  margin-top: 40px;
+  font-weight: 550;
+  position: relative;
+  left: 5.5%;
+}
+.weather:hover {
+    font-size: 17px;
+}
+.temperature:hover {
+    font-size: 65px;
+
 }
 input {
     background-color: transparent;

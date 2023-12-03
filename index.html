@@ -15,29 +15,21 @@
   
     <script>
      document.addEventListener("DOMContentLoaded", function () {
-  // Wait for the DOM to be fully loaded
-
-  // Fetch user's IP address from ipinfo.io
   fetch("https://ipinfo.io/json?token=02933c1b631b68")
     .then((response) => response.json())
     .then((ipInfo) => {
       const city = ipInfo.city;
       const region = ipInfo.region;
       const country = ipInfo.country;
-
-      // Display the location data (you can customize this based on your needs)
       const locationInfo = document.getElementById("location-info");
       locationInfo.textContent = `Your location: ${city}, ${region}, ${country}`;
 
-      // Fetch weather data using the city (or coordinates) obtained from IP
       getWeatherByCity(city);
     })
     .catch((error) => {
       console.error("Error getting IP information:", error);
-      // Handle the error as needed
     });
 
-  // Function to get weather data by city
   function getWeatherByCity(city) {
     const apiKey = "414c58299092f18c1c087fc9504f46b0";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -50,8 +42,8 @@
         additionDiv.className = 'addition';
         additionDiv.innerHTML = `
                         <h2>Weather in ${city}</h2>
-                        <p>Temperature: ${data.main.temp} °C</p>
-                        <p>Weather: ${data.weather[0].description}</p>
+                        <p class="temperature">${data.main.temp} °C</p>
+                        <p class="weather">${data.weather[0].description}</p>
                         `;
 
      

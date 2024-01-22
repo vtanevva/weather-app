@@ -1,108 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Weather App</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap">
 
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <!-- title -->
+  <title>weather app</title>
+  <!-- styles link -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- font import -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap">
+</head>
 
-  <body>
-   
-    <div id="weather-info"></div>
-    <div id="location-info"></div>
-  
-    <script>
-     document.addEventListener("DOMContentLoaded", function () {
-  fetch("https://ipinfo.io/json?token=02933c1b631b68")
-    .then((response) => response.json())
-    .then((ipInfo) => {
-      const city = ipInfo.city;
-      const region = ipInfo.region;
-      const country = ipInfo.country;
-      const locationInfo = document.getElementById("location-info");
-      locationInfo.textContent = `Your location: ${city}, ${region}, ${country}`;
+<body>
+  <!-- displays weather information and location information -->
+  <div id="weather-info"></div>
+  <div id="location-info"></div>
 
-      getWeatherByCity(city);
-    })
-    .catch((error) => {
-      console.error("Error getting IP information:", error);
-    });
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // fetches IP information to get user's location
+      fetch("https://ipinfo.io/json?token=02933c1b631b68")
+        .then((response) => response.json())
+        .then((ipInfo) => {
+          const city = ipInfo.city;
+          const region = ipInfo.region;
+          const country = ipInfo.country;
+          const locationInfo = document.getElementById("location-info");
+          locationInfo.textContent = `your location: ${city}, ${region}, ${country}`;
 
-  function getWeatherByCity(city) {
-    const apiKey = "414c58299092f18c1c087fc9504f46b0";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+          // gets weather information based on the user's city
+          getWeatherByCity(city);
+        })
+        .catch((error) => {
+          console.error("error getting IP information:", error);
+        });
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        const weatherInfo = document.getElementById("weather-info");
-        const additionDiv = document.createElement("div"); 
-        additionDiv.className = 'addition';
-        additionDiv.innerHTML = `
+      // function that gets weather information based on city
+      function getWeatherByCity(city) {
+        const apiKey = "414c58299092f18c1c087fc9504f46b0";
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+        // fetches weather data
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            const weatherInfo = document.getElementById("weather-info");
+            const additionDiv = document.createElement("div");
+            additionDiv.className = 'addition';
+            additionDiv.innerHTML = `
                         <h2>Weather in ${city}</h2>
                         <p class="temperature">${data.main.temp}°C</p>
                         <p class="weather">${data.weather[0].description}</p>
                         `;
 
-     
-        weatherInfo.appendChild(additionDiv);
+            // displays weather information
+            weatherInfo.appendChild(additionDiv);
 
-        background(additionDiv, data.weather[0].main);
-      })
-      .catch((error) => {
-        console.error(error);
-        alert(
-          "An error occurred while fetching weather data. Check the console for details."
-        );
-      });
-  }
-});
-
-      function background(x, y) {
-        switch (y) {
-          case "Thunderstorm":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-            break;
-          case "Drizzle":
-            x.style.backgroundImage = 'url("./static/images/rain.gif")';
-            break;
-          case "Rain":
-            x.style.backgroundImage = 'url("./static/images/rain.gif")';
-            break;
-          case "Snow":
-            x.style.backgroundImage = 'url("./static/images/snow.gif")';
-            break;
-          case "Atmosphere":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-            break;
-          case "Clear":
-            x.style.backgroundImage = 'url("./static/images/clear.gif")';
-            break;
-          case "Clouds":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Haze":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          default:
-            x.style.backgroundImage = 'url("./static/images/clear.gif")';
-        }
+            // sets background based on weather conditions
+            background(additionDiv, data.weather[0].main);
+          })
+          .catch((error) => {
+            console.error(error);
+            alert(
+              "an error occurred while fetching weather data. check the console for details."
+            );
+          });
       }
-      var myButton = document.getElementById("myButton");
-      myButton.addEventListener("click", function () {
-        getWeather();
-      });
+    });
 
-     
-    </script>
-    <script src="scrpit.js"></script>
-  </body>
+    // function that sets background based on weather conditions
+    function background(x, y) {
+      switch (y) {
+        case "thunderstorm":
+          x.style.backgroundImage = 'url("./static/images/fog.gif")';
+          break;
+        case "drizzle":
+          x.style.backgroundImage = 'url("./static/images/rain.gif")';
+          break;
+        case "rain":
+          x.style.backgroundImage = 'url("./static/images/rain.gif")';
+          break;
+        case "snow":
+          x.style.backgroundImage = 'url("./static/images/snow.gif")';
+          break;
+        case "atmosphere":
+          x.style.backgroundImage = 'url("./static/images/fog.gif")';
+          break;
+        case "clear":
+          x.style.backgroundImage = 'url("./static/images/clear.gif")';
+          break;
+        case "clouds":
+          x.style.backgroundImage = 'url("./static/images/fog.gif")';
+          break;
+        case "mist":
+          x.style.backgroundImage = 'url("./static/images/fog.gif")';
+          break;
+        case "haze":
+          x.style.backgroundImage = 'url("./static/images/fog.gif")';
+          break;
+        default:
+          x.style.backgroundImage = 'url("./static/images/clear.gif")';
+      }
+    }
+
+    // event listener for a button click for prev version
+    var myButton = document.getElementById("myButton");
+    myButton.addEventListener("click", function () {
+      getWeather();
+    });
+
+  </script>
+  <script src="scrpit.js"></script>
+</body>
+
 </html>

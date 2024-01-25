@@ -8,10 +8,9 @@
 
   <body>
     <section class="home">
-      <h1>Weather App</h1>
       <label for="city">Where are you?</label>
       <input type="text" id="city" />
-      <button id="myButton">Get Weather</button>
+      <button id="myButton">search</button>
     </section>
     <div id="weather-info"></div>
 
@@ -32,6 +31,7 @@
           .then((data) => {
             const weatherInfo = document.getElementById("weather-info");
             const additionDiv = document.createElement("div");
+            const back = document.getElementsByClassName('temperature');
             const additionDivBox = document.createElement("div");
             additionDiv.className = "addition";
             additionDivBox.className = "addition-co";
@@ -40,7 +40,7 @@
                               
                                 <h2>Weather in ${city}</h2><div class="back-textbox">
                                 <p class="temperature">Temperature: ${data.main.temp} °C</p>
-                                <p class="weather">Weather: ${data.weather[0].description}</p>
+                                <p class="temperature">Weather: ${data.weather[0].description}</p>
                               </div>    
                         `;
             weatherInfo.innerHTML = "";
@@ -50,6 +50,7 @@
             const additionCo = document.getElementById("addition-co");
 
             background(additionDiv, data.weather[0].main);
+           /* backColor(back, data.weather[0].main)*/
           })
           .catch((error) => {
             console.error(error);
@@ -86,42 +87,6 @@
             x.style.backgroundImage = 'url("./static/images/fog.gif")';
 
             break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
-          case "Mist":
-            x.style.backgroundImage = 'url("./static/images/fog.gif")';
-
-            break;
           default:
             x.style.backgroundImage = "none";
         }
@@ -130,6 +95,39 @@
       myButton.addEventListener("click", function () {
         getWeather();
       });
+
+     /* function backColor(z, i) {
+            switch(z) {
+            case "Thunderstorm":
+            z.style.backgroundColor = 'lightblue';
+            break;
+          case "Drizzle":
+            z.style.backgroundColor = 'darkblue';
+            break;
+          case "Rain":
+            z.style.backgroundColor = 'blue';
+            break;
+          case "Snow":
+            z.style.backgroundColor = 'lightblue';
+            break;
+          case "Atmosphere":
+            z.style.backgroundColor = 'darkblue';
+            break;
+          case "Clear":
+            z.style.backgroundColor = 'lightblue';
+            break;
+          case "Clouds":
+            z.style.backgroundColor = 'grey';
+
+            break;
+          case "Mist":
+            z.style.backgroundColor = 'grey';
+
+            break;
+          default:
+            x.style.backgroundColor = "none";
+        }
+      }*/
     </script>
     <script src="scrpit.js"></script>
   </body>

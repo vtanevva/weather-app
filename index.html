@@ -24,7 +24,7 @@
         }
 
         const apiKey = "414c58299092f18c1c087fc9504f46b0";
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
         fetch(url)
           .then((response) => response.json())
@@ -39,7 +39,7 @@
             const additionCoContent = `
                               
                                 <h2>Weather in ${city}</h2><div class="back-textbox">
-                                <p class="temperature">Temperature: ${data.main.temp} °C</p>
+                                <p class="temperature">Temperature: ${data.main.temp} K</p>
                                 <p class="temperature">Weather: ${data.weather[0].description}</p>
                               </div>    
                         `;
